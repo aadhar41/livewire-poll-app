@@ -1,8 +1,7 @@
 <div>
-    <form action="" method="post">
+    <form wire:submit.prevent="createPoll" method="post">
         <label for="">Poll Title</label>
         <input type="text" wire:model.live="title" />
-        <h1 class="mt-2">Title: "{{ $title }}"</h1>
 
         <div class="mb-4 mt-2">
             <button type="button" wire:click.prevent="addOption" class="btn btn-primarybtn-lg btn-block">
@@ -15,11 +14,13 @@
                 <div class="mb-2">
                     <label for="">Option - {{ $index + 1 }}</label>
                     <div class="flex gap-2">
-                        <input type="text" wire:model.live="options.{{ $index }}" name="" />
+                        <input type="text" wire:model.live="options.{{ $index }}" />
                         <button class="btn" wire:click.prevent="removeOption({{ $index }})">Remove</button>
                     </div>
                 </div>
             @endforeach
         </div>
+
+        <button type="submit" class="btn mt-2">Create Poll</button>
     </form>
 </div>
